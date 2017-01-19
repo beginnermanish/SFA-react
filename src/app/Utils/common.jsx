@@ -152,6 +152,7 @@ export default {
 	priceEngineNamespace: 'ebMobile.Pricing.Service',
 	currentBuildVersion: '6.0.0',
 	activeSurveyId: null,
+	momentDateFormat: 'YYYY-MM-DD',
 	standardDateFormat: "yyyy-mm-dd",
 	standardDateTimeFormat: "yyyy-mm-dd HH:MM:ss",
 	editorIconRootPath: 'resources/EditorIcons/',

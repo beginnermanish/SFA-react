@@ -1,4 +1,6 @@
 import React from 'react';
+import common from '../Utils/common'
+import welcomeService from '../services/welcome'
 
 class Welcome extends React.Component {
 
@@ -8,8 +10,14 @@ class Welcome extends React.Component {
 		}
 	}
 
+	init() {
+		welcomeService.getEvents(moment().format(common.momentDateFormat)).then(function (data) {});
+		welcomeService.getMessages().then(function (data) {});
+	}
+
 	constructor(props) {
 		super(props);
+		this.init();
 	}
 
 	render() {
