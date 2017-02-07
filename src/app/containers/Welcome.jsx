@@ -11,8 +11,12 @@ class Welcome extends React.Component {
 	}
 
 	init() {
-		welcomeService.getEvents(moment().format(common.momentDateFormat)).then(function (data) {});
-		welcomeService.getMessages().then(function (data) {});
+		welcomeService.getEvents(moment().format(common.momentDateFormat)).then(function (data) {
+			console.log(data);
+		});
+		welcomeService.getMessages().then(function (data) {
+			console.log(data);
+		});
 	}
 
 	constructor(props) {

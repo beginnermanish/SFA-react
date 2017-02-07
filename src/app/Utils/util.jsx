@@ -1777,9 +1777,11 @@ export default {
 		var isPhoneGap = me.isPhoneGap();
 		var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
 		for (var i = 0, len = res.length; i < len; i++) {
-			jsonData.push(_.reduce((isPhoneGap || isSafari) ? res.item(i) : res[i], function (result, n, key) {
-				result[key] = (n === 'undefined' || n === 'null') ? null : n;
-			}));
+			var item = (isPhoneGap || isSafari) ? res.item(i) : res[i];
+			for (var o in item) {
+				item[o] = (item[o] === 'undefined' || item[o] === 'null') ? null : item[o];
+			}
+			jsonData.push(item);
 		}
 		return jsonData;
 	},
