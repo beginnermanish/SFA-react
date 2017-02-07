@@ -129,7 +129,6 @@ export default {
 	 * @param {Boolean} forceLogin - boolean value to check the login is forced or not
 	 * */
 	showMain: function (forceLogin) {
-		debugger;
 		var me = this;
 		$('body').css('background', '');
 
