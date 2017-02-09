@@ -19,6 +19,7 @@ export default {
 	getEvents: function (date) {
 		return new Promise(function (resolve, reject) {
 			var query = "SELECT ebMobile__UserName__c AS OwnerName, StartDateTime, EndDateTime, Subject, Description, ebMobile__IsPriority__c AS IsPriority FROM Event WHERE ebMobile__RecordTypeName__c LIKE '%Calendar%' AND ebMobile__IsActive__c = 1 AND datetime(StartDateTime) BETWEEN datetime('" + date + "') AND datetime('" + date + "','+1 day','-1 second') ORDER BY StartDateTime";
+			query = "SELECT Id, ebMobile__UserName__c AS OwnerName, StartDateTime, EndDateTime, Subject, Description, ebMobile__IsPriority__c AS IsPriority FROM Event";
 			util.execute(query).then(function (result) {
 				resolve(util.getResultAsArray(result[1].rows));
 			});

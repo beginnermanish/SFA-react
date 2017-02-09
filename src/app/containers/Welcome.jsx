@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from "classnames";
 import common from '../Utils/common'
 import welcomeService from '../services/welcome'
 
@@ -11,17 +12,20 @@ class Welcome extends React.Component {
 	}
 
 	init() {
+		var me = this;
 		welcomeService.getEvents(moment().format(common.momentDateFormat)).then(function (data) {
-			console.log(data);
+			me.setState({ events: data });
 		});
 		welcomeService.getMessages().then(function (data) {
-			console.log(data);
+			me.setState({ messages: data });
 		});
 	}
 
 	constructor(props) {
 		super(props);
+		this.state = { events: [], messages: [] };
 		this.init();
+
 	}
 
 	render() {
@@ -277,42 +281,21 @@ class Welcome extends React.Component {
 							</div>
 							<div className="sfa-panel-body">
 								<ul className="sfa-list-view">
-									<li>
-										<a href="#">
-											<span className="sfa-text-block sfa-ellipsis-2">Coke Zero Product Launch planned for 5th Feb at Key accounts.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">David</span>
-												<span className="pull-right sfa-font-italic">Jan,13th</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span className="sfa-text-block sfa-ellipsis-2">Government increased taxes on beverage as of 1st March.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">John</span>
-												<span className="pull-right sfa-font-italic">Jan,13th</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span className="sfa-text-block sfa-ellipsis-2">Pepsi launched a new design for 300ml can.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">Bob</span>
-												<span className="pull-right sfa-font-italic">Jan,13th</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span className="sfa-text-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque orci rutrum mollis suscipit. Ut et urna eget urna auctor lacinia eu in tellus. Morbi ante orci, ultrices ac scelerisque ac, dictum nec dolor. Aenean accumsan lorem quis sagittis tempor. Vestibulum vitae magna sed risus lobortis malesuada nec et arcu. Integer at laoreet sapien. Nullam finibus neque ut massa feugiat dictum. Praesent in orci in leo iaculis ultricies.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">Lorem Ipsum</span>
-												<span className="pull-right sfa-font-italic">Jan,13th</span>
-											</span>
-										</a>
-									</li>
+									{
+										this.state.messages.map((value) => {
+											return (
+												<li>
+													<a href="#">
+														<span className="sfa-text-block sfa-ellipsis-2">{Name}</span>
+														<span className="sfa-text-block sfa-font-sm">
+															<span className="pull-left sfa-font-italic">{ebMobile__Sender__c}</span>
+															<span className="pull-right sfa-font-italic">Jan,13th</span>
+														</span>
+													</a>
+												</li>
+											)
+										})
+									}
 								</ul>
 							</div>
 						</div>
@@ -386,46 +369,25 @@ class Welcome extends React.Component {
 							</table>
 							<div className="sfa-panel-body">
 								<ul className="sfa-list-view">
-									<li>
-										<a href="welcome_mailopen.html" className="sfa-media sfa-visited">
-											<span className="sfa-icon sfa-icon-flag-important"></span>
-											<span className="sfa-text-block sfa-ellipsis">Meet supervisor at Starbucks near the Walmart.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">Ann</span>
-												<span className="pull-right sfa-font-italic">01:00 &ndash; 02:00 p.m</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="welcome_mailopen.html" className="sfa-media">
-											<span className="sfa-icon sfa-icon-flag"></span>
-											<span className="sfa-text-block sfa-ellipsis">Meet supervisor at Starbucks near the Walmart.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">Ann</span>
-												<span className="pull-right sfa-font-italic">01:00 &ndash; 02:00 p.m</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="welcome_mailopen.html" className="sfa-media">
-											<span className="sfa-icon sfa-icon-flag"></span>
-											<span className="sfa-text-block sfa-ellipsis">Meet supervisor at Starbucks near the Walmart.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">Ann</span>
-												<span className="pull-right sfa-font-italic">01:00 &ndash; 02:00 p.m</span>
-											</span>
-										</a>
-									</li>
-									<li>
-										<a href="welcome_mailopen.html" className="sfa-media">
-											<span className="sfa-icon"></span>
-											<span className="sfa-text-block sfa-ellipsis">Meet supervisor at Starbucks near the Walmart.</span>
-											<span className="sfa-text-block sfa-font-sm">
-												<span className="pull-left sfa-font-italic">Ann</span>
-												<span className="pull-right sfa-font-italic">01:00 &ndash; 02:00 p.m</span>
-											</span>
-										</a>
-									</li>
+									{
+										this.state.events.map(function (event) {
+											let eventIconCls = cx('sfa-icon', {
+												['sfa-icon-flag-important']: event.IsPriority == 1
+											});
+											return (
+												<li key={event.Id}>
+													<a className="sfa-media">
+														<span className={eventIconCls}></span>
+														<span className="sfa-text-block sfa-ellipsis">{event.Subject}</span>
+														<span className="sfa-text-block sfa-font-sm">
+															<span className="pull-left sfa-font-italic">{event.Subject}</span>
+															<span className="pull-right sfa-font-italic">01:00 &ndash; 02:00 p.m</span>
+														</span>
+													</a>
+												</li>
+											);
+										})
+									}
 								</ul>
 							</div>
 						</div>
