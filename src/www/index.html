@@ -7,6 +7,7 @@
   	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   	<link rel="stylesheet" type="text/css" href="css/fonts.css">
   	<link rel="stylesheet" type="text/css" href="css/app.css">
+  	<link rel="stylesheet" type="text/css" href="css/override.css">
     
 	  <link href="plugins/jQuery-Message-Box/css/messageBox.css" rel="stylesheet" />
     <!--External libs-->
@@ -17,6 +18,16 @@
     <script src="js/moment-timezone-with-data-2010-2020.min.js" type="text/javascript"></script>
 	  <script src="plugins/jQuery-Message-Box/js/jquery.messagebox.js"></script>
 	  <script src="js/Model.js"></script>
+    <script>
+      String.format = function () {
+        var s = arguments[0];
+        for (var i = 0; i < arguments.length - 1; i++) {
+          var reg = new RegExp("\\{" + i + "\\}", "gm");
+          s = s.replace(reg, arguments[i + 1]);
+        }
+        return s;
+      }
+    </script>
   </head>
   <body>
     <div id="app" />

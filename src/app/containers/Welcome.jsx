@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from "classnames";
 import common from '../Utils/common'
+import menu from '../Components/IMarketMenu'
 import welcomeService from '../services/welcome'
 
 class Welcome extends React.Component {
@@ -31,58 +32,7 @@ class Welcome extends React.Component {
 	render() {
 		return (
 			<div className="sfa-layout">
-				<div className="sfa-side-nav">
-					<ul>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-dashboard"></span>
-								<span>Dashboard</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-routes"></span>
-								<span>Routes</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-gallery"></span>
-								<span>Gallery</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-orders"></span>
-								<span>Orders</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-request"></span>
-								<span>Request</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-elearning"></span>
-								<span>e-Learning</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-sync"></span>
-								<span>Sync</span>
-							</button>
-						</li>
-						<li>
-							<button className="sfa-btn">
-								<span className="sfa-icon sfa-icon-profile"></span>
-								<span>Profile</span>
-							</button>
-						</li>
-					</ul>
-				</div>
+				{menu}
 				<div className="sfa-top-nav">
 					<span className="pull-left">
 						<button className="pull-left sfa-btn sfa-btn-red sfa-btn-prev" onClick={this.navigate}><span className="sfa-icon sfa-icon-prev"></span> <span>Back</span></button>
