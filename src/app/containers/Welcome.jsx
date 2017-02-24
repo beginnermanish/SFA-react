@@ -1,14 +1,18 @@
 import React from 'react';
 import cx from "classnames";
-import common from '../Utils/common'
-import menu from '../Components/IMarketMenu'
-import welcomeService from '../services/welcome'
+import common from '../Utils/common';
+import menu from '../Components/IMarketMenu';
+import welcomeService from '../services/welcome';
+import { browserHistory } from 'react-router';
 
 class Welcome extends React.Component {
 
 	navigate(path) {
 		if (path === 'back') {
 			window.history.back();
+		}
+		else {
+			browserHistory.push('/' + path);
 		}
 	}
 
@@ -35,10 +39,10 @@ class Welcome extends React.Component {
 				{menu}
 				<div className="sfa-top-nav">
 					<span className="pull-left">
-						<button className="pull-left sfa-btn sfa-btn-red sfa-btn-prev" onClick={this.navigate}><span className="sfa-icon sfa-icon-prev"></span> <span>Back</span></button>
+						<button className="pull-left sfa-btn sfa-btn-red sfa-btn-prev" onClick={this.navigate.bind(this, 'Back')}><span className="sfa-icon sfa-icon-prev"></span> <span>Back</span></button>
 					</span>
 					<span className="pull-right">
-						<button className="pull-right sfa-btn sfa-btn-red sfa-btn-next" onClick={this.navigate}><span>Start</span> <span className="sfa-icon sfa-icon-next"></span></button>
+						<button className="pull-right sfa-btn sfa-btn-red sfa-btn-next" onClick={this.navigate.bind(this, 'dashboard')}><span>Start</span> <span className="sfa-icon sfa-icon-next"></span></button>
 					</span>
 				</div>
 				<div className="sfa-grid">

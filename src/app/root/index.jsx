@@ -7,6 +7,7 @@ import Login from '../containers/Login.jsx';
 import Dashboard from '../containers/Dashboard.jsx';
 import MasterPage from '../containers/MasterPage.jsx';
 import Welcome from '../containers/Welcome.jsx';
+import RoutePlan from '../containers/RoutePlan.jsx';
 
 class Root extends Component {
   render() {
@@ -18,7 +19,8 @@ class Root extends Component {
           <Route path="/login" component={Login} />
           <Route path="/" component={MasterPage} >
             <Route path="/dashboard" component={Dashboard} />
-            <Route path="/welcome" component={Welcome} />
+            <Route path="/welcome" component={RoutePlan} />
+            <Route path="/route-plan" component={RoutePlan} />
           </Route>
         </Router>
       </Provider>

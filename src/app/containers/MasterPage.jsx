@@ -13,6 +13,7 @@ class MasterPage extends React.Component {
 	}
 
 	render() {
+		let currentPath = this.props.location.pathname;
 		return (
 			<div>
 				<div className="sfa-viewport">
@@ -22,6 +23,7 @@ class MasterPage extends React.Component {
 								<span className="sfa-table-cell"><img src="img/actionbar_coke_logo.png" className="sfa-coke-logo" /></span>
 							</span>
 						</span>
+						{ currentPath === '/welcome' ? '' : <button className="pull-left sfa-btn sfa-btn-red"><span className="sfa-icon sfa-icon-menu"></span></button> }
 						<span className="pull-left sfa-welcome">Hello Richa</span>
 						<button className="pull-left sfa-btn"><span className="sfa-icon sfa-icon-chatter"></span><span className="sfa-notification"></span></button>
 						<button className="pull-left sfa-btn"><span className="sfa-icon sfa-icon-camera"></span></button>

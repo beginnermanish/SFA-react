@@ -70,6 +70,7 @@ const processLogin = (existingInfo, isDbSchemaChanged) => {
 		}
 	});*/
 	//common.appInfo.lastOnlineLogin = new Date();
+	debugger
 	if (common.canExportDatabase || !existingInfo || existingInfo.username != common.appInfo.username || isDbSchemaChanged
 		|| !existingInfo.isSchemaCreated || existingInfo.roleId != common.appInfo.roleId || existingInfo.version !== common.currentBuildVersion
 		|| common.isRoleChanged) {
