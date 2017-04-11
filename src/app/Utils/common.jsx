@@ -1220,7 +1220,7 @@ export default {
 			window.history.go($rootScope.browseHistory.length - $rootScope.browseHistory.indexOf(url));
 			$rootScope.browseHistory.length = $rootScope.browseHistory.indexOf(url) + 1;
 		} else {
-			$rootScope.browseHistory.length = $rootScope.browseHistory.length - 1;
+			//$rootScope.browseHistory.length = $rootScope.browseHistory.length - 1;
 			window.history.back();
 		}
 	}

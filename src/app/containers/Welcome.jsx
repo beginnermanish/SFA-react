@@ -2,8 +2,11 @@ import React from 'react';
 import cx from "classnames";
 import common from '../Utils/common';
 import menu from '../Components/IMarketMenu';
-import welcomeService from '../services/welcome';
+import welcomeService from '../services/Welcome';
+import commonService from '../services/CommonService';
 import { browserHistory } from 'react-router';
+import { connect } from 'react-redux'
+import * as action from '../Redux/actions'
 
 class Welcome extends React.Component {
 
@@ -24,13 +27,15 @@ class Welcome extends React.Component {
 		welcomeService.getMessages().then(function (data) {
 			me.setState({ messages: data });
 		});
+		commonService.getConfigurationData().then((data) => {
+			me.props.setAppConfiguration(data);
+		})
 	}
 
 	constructor(props) {
 		super(props);
 		this.state = { events: [], messages: [] };
 		this.init();
-
 	}
 
 	render() {
@@ -352,4 +357,4 @@ class Welcome extends React.Component {
 	}
 }
 
-export default Welcome
+export default connect(null, action)(Welcome);

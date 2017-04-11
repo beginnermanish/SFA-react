@@ -57,3 +57,13 @@ export const appStatus = (state = defaultAppState, action) => {
       return state;
   }
 }
+
+export const appConfiguration = (state = [], action) => {
+  switch (action.type) {
+    case Actions.SET_CONFIG:
+      state = Object.assign({}, state, action.data);
+      return state
+    default:
+      return state;
+  }
+}

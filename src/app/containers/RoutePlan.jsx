@@ -8,16 +8,23 @@ import { browserHistory } from 'react-router';
 class RoutePlan extends React.Component {
 
     init() {
+        var me = this
         routePlanService.getDayCustomers().then(function (data) {
             console.log(data);
-            this.setState({ events: data });
+            me.setState({ events: data });
         })
     }
 
     constructor(props) {
         super(props);
         this.state = { events: [], messages: [] };
+    }
+
+    componentDidMount() {
         this.init();
+    }
+
+    changeView(){
     }
 
     render() {
@@ -26,14 +33,14 @@ class RoutePlan extends React.Component {
                 {menu}
                 <div className="sfa-top-nav">
                     <span className="pull-left">
-                        <button className="pull-left sfa-btn sfa-btn-red sfa-btn-prev" onClick="javascript:window.history.back();"><span className="sfa-icon sfa-icon-prev"></span> <span>Back</span></button>
-                        <button className="pull-left sfa-btn sfa-active" onClick="javascript:window.location.href='route_plan.html'"><span>Day</span></button>
-                        <button className="pull-left sfa-btn" onClick="javascript:window.location.href='route_plan_week.html'"><span>Week</span></button>
-                        <button className="pull-left sfa-btn" onClick="javascript:window.location.href='route_plan_map.html'"><span>Map</span></button>
+                        <button className="pull-left sfa-btn sfa-btn-red sfa-btn-prev" onClick={common.back}><span className="sfa-icon sfa-icon-prev"></span> <span>Back</span></button>
+                        <button className="pull-left sfa-btn sfa-active" onClick={this.changeView}><span>Day</span></button>
+                        <button className="pull-left sfa-btn" onClick={this.changeView}><span>Week</span></button>
+                        <button className="pull-left sfa-btn" onClick={this.changeView}><span>Map</span></button>
                     </span>
                     <span className="pull-right">
-                        <button className="pull-left sfa-btn" onClick="javascript:window.location.href='day_summary.html'"><span>Day Summary</span></button>
-                        <button className="pull-right sfa-btn sfa-btn-red sfa-btn-next" onClick="javascript:window.location.href='start_call.html'"><span>Start Call</span> <span className="sfa-icon sfa-icon-next"></span></button>
+                        <button className="pull-left sfa-btn" onClick={this.changeView}><span>Day Summary</span></button>
+                        <button className="pull-right sfa-btn sfa-btn-red sfa-btn-next" onClick={this.changeView}><span>Start Call</span> <span className="sfa-icon sfa-icon-next"></span></button>
                     </span>
                 </div>
                 <div className="sfa-grid sfa-grid-with-toolbar">
@@ -41,31 +48,31 @@ class RoutePlan extends React.Component {
                         <div className="sfa-grid-toolbar-panel">
                             <ul>
                                 <li>
-                                    <button className="sfa-btn" onClick="javascript:window.location.href='ar_offset.html'">
+                                    <button className="sfa-btn" onClick={this.changeView}>
                                         <span className="sfa-icon sfa-icon-ar-collection"></span>
                                         <span className="sfa-ellipsis-2">Collection</span>
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="sfa-btn" onClick="javascript:window.location.href='customer_phone_order.html'">
+                                    <button className="sfa-btn" onClick={this.changeView}>
                                         <span className="sfa-icon sfa-icon-customer-phone-order"></span>
                                         <span className="sfa-ellipsis-2">Place Order</span>
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="sfa-btn" onClick="javascript:window.location.href='cde_issue.html'">
+                                    <button className="sfa-btn" onClick={this.changeView}>
                                         <span className="sfa-icon sfa-icon-customer-asset"></span>
                                         <span className="sfa-ellipsis-2">CDE</span>
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="sfa-btn" onClick="javascript:window.location.href='customer_dashboard.html'">
+                                    <button className="sfa-btn" onClick={this.changeView}>
                                         <span className="sfa-icon sfa-icon-customer-dashboard"></span>
                                         <span className="sfa-ellipsis-2">Dashboard</span>
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="sfa-btn" onClick="javascript:window.location.href='customer_profile.html'">
+                                    <button className="sfa-btn" onClick={this.changeView()}>
                                         <span className="sfa-icon sfa-icon-customer-profile"></span>
                                         <span className="sfa-ellipsis-2">Profile</span>
                                     </button>
@@ -77,8 +84,8 @@ class RoutePlan extends React.Component {
                         <div className="sfa-panel sfa-route-plan">
                             <div className="sfa-panel-header">
                                 <span className="sfa-panel-title">Plan <span className="sfa-font-sm">(20/40)</span></span>
-                                <button className="sfa-btn sfa-btn-plain sfa-btn-l" onClick="javascript:window.location.href='route_plan_edit_call.html'"><span className="sfa-icon sfa-icon-edit-call"></span></button>
-                                <button className="sfa-btn sfa-btn-plain sfa-btn-r" onClick="javascript:window.location.href='route_plan_add_call.html'"><span className="sfa-icon sfa-icon-add-call"></span></button>
+                                <button className="sfa-btn sfa-btn-plain sfa-btn-l" onClick={this.changeView}><span className="sfa-icon sfa-icon-edit-call"></span></button>
+                                <button className="sfa-btn sfa-btn-plain sfa-btn-r" onClick={this.changeView}><span className="sfa-icon sfa-icon-add-call"></span></button>
                             </div>
                             <div className="sfa-search">
                                 <span className="sfa-form-control">
@@ -196,11 +203,11 @@ class RoutePlan extends React.Component {
                                     </div>
                                 </div>
                                 <div className="sfa-tab-group">
-                                    <button className="pull-left sfa-btn sfa-active" onClick="javascript:window.location.href='route_plan.html'"><span className="sfa-icon sfa-icon-order"></span> <span>Order</span></button>
-                                    <button className="pull-left sfa-btn" onClick="javascript:window.location.href='route_plan_cde_order.html'"><span className="sfa-icon sfa-icon-equipments"></span> <span>CDE Order</span></button>
-                                    <button className="pull-left sfa-btn" onClick="javascript:window.location.href='route_plan_note.html'"><span className="sfa-icon sfa-icon-note"></span> <span>Note</span></button>
-                                    <button className="pull-left sfa-btn" onClick="javascript:window.location.href='route_plan_issue.html'"><span className="sfa-icon sfa-icon-issue"></span> <span>Issue</span></button>
-                                    <button className="pull-left sfa-btn" onClick="javascript:window.location.href='route_plan_open-ar.html'"><span className="sfa-icon sfa-icon-order"></span> <span>OpenAR</span></button>
+                                    <button className="pull-left sfa-btn sfa-active" onClick={this.changeView}><span className="sfa-icon sfa-icon-order"></span> <span>Order</span></button>
+                                    <button className="pull-left sfa-btn" onClick={this.changeView}><span className="sfa-icon sfa-icon-equipments"></span> <span>CDE Order</span></button>
+                                    <button className="pull-left sfa-btn" onClick={this.changeView}><span className="sfa-icon sfa-icon-note"></span> <span>Note</span></button>
+                                    <button className="pull-left sfa-btn" onClick={this.changeView}><span className="sfa-icon sfa-icon-issue"></span> <span>Issue</span></button>
+                                    <button className="pull-left sfa-btn" onClick={this.changeView}><span className="sfa-icon sfa-icon-order"></span> <span>OpenAR</span></button>
                                 </div>
                                 <div className="sfa-tab-content">
                                     <ul className="sfa-list-view">

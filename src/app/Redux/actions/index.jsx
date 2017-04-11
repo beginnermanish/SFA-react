@@ -11,6 +11,7 @@ export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
 export const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
 export const SHOW_PROGRESS = 'SHOW_PROGRESS'
 export const HIDE_PROGRESS = 'HIDE_PROGRESS'
+export const SET_CONFIG = 'SET_CONFIG'
 
 const requestPosts = url => {
 	return {
@@ -61,6 +62,13 @@ export const updateAppProgress = (data) => {
 	}
 }
 
+export const setAppConfiguration = (data) => {
+	return {
+		type: SET_CONFIG,
+		data
+	}
+}
+
 const processLogin = (existingInfo, isDbSchemaChanged) => {
 
 	/*chekNewVersion().then(function (isFound) {
@@ -70,7 +78,6 @@ const processLogin = (existingInfo, isDbSchemaChanged) => {
 		}
 	});*/
 	//common.appInfo.lastOnlineLogin = new Date();
-	debugger
 	if (common.canExportDatabase || !existingInfo || existingInfo.username != common.appInfo.username || isDbSchemaChanged
 		|| !existingInfo.isSchemaCreated || existingInfo.roleId != common.appInfo.roleId || existingInfo.version !== common.currentBuildVersion
 		|| common.isRoleChanged) {
